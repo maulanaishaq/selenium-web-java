@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Regression Test">
+    <test name="Run Class Annotations">
+        <classes>
+            <class name="LoginPageTest"/>
+            <class name="InventoryPageTest"/>
+            <class name="InventoryItemTest"/>
+            <class name="CartPageTest"/>
+            <class name="CheckoutInformationTest"/>
+            <class name="CheckoutOverviewTest"/>
+        </classes>
+    </test>
+</suite>
