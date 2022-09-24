@@ -82,9 +82,6 @@ public class CheckoutInformationTest extends TestBase {
         String actualTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
         Assert.assertEquals(actualTotalCart, "");
 
-
-
-
     }
 
 }

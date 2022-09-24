@@ -47,9 +47,25 @@ public class CheckoutOverviewTest extends TestBase {
         String actualThanksMessage = driver.findElement(By.xpath("//h2[starts-with(text(), 'THANK YOU FOR YOUR ORDER')]")).getText();
         Assert.assertEquals(actualThanksMessage, "THANK YOU FOR YOUR ORDER");
 
-
-
     }
+
+
+    @Test
+    public void CancelCheckout(){
+        loginPage.setTxtUsername("standard_user");
+        loginPage.setTxtPassword("secret_sauce");
+        loginPage.setBtnLogin();
+        inventoryPage.clickBtnAddToCartProduct1();
+        inventoryPage.clickBtnAddToCartProduct2();
+        inventoryPage.clickBtnCart();
+        cartPage.clickBtnCheckout();
+        checkoutInformationPage.inputFirstName("maulana");
+        checkoutInformationPage.inputLastName("ishaq");
+        checkoutInformationPage.inputPostalCode("2102912");
+        checkoutInformationPage.clickBtnContinue();
+        checkoutInformationPage.clickBtnCancel();
+    }
+
 
 
 
