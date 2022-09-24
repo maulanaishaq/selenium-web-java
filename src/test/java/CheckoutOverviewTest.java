@@ -63,7 +63,10 @@ public class CheckoutOverviewTest extends TestBase {
         checkoutInformationPage.inputLastName("ishaq");
         checkoutInformationPage.inputPostalCode("2102912");
         checkoutInformationPage.clickBtnContinue();
-        checkoutInformationPage.clickBtnCancel();
+        checkoutOverviewPage.clickBtnCancel();
+        String actualUrl = driver.getCurrentUrl();
+        String expected = "https://www.saucedemo.com/inventory.html";
+        Assert.assertEquals(actualUrl, expected);
     }
 
 
