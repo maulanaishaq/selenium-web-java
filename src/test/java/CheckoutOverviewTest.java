@@ -71,5 +71,14 @@ public class CheckoutOverviewTest extends TestBase {
 
 
 
+    @Test
+    public void backToHome(){
+        checkoutFinish();
+        checkoutOverviewPage.clickBtnHome();
+        String actualUrl = driver.getCurrentUrl();
+        String expected = "https://www.saucedemo.com/inventory.html";
+        Assert.assertEquals(actualUrl, expected);
+    }
+
 
 }
