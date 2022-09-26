@@ -1,7 +1,8 @@
 import base.TestBase;
-import org.openqa.selenium.By;
+
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -40,7 +41,7 @@ public class CheckoutInformationTest extends TestBase {
         inventoryPage.clickBtnAddToCartProduct2();
         inventoryPage.clickBtnCart();
         cartPage.clickBtnCheckout();
-        String verifyPage = driver.findElement(By.xpath("//span[@class = 'title']")).getText();
+        String verifyPage = checkoutInformationPage.getTitleCheckoutYourInformation();
         Assert.assertEquals(verifyPage, "CHECKOUT: YOUR INFORMATION");
     }
 
@@ -49,7 +50,7 @@ public class CheckoutInformationTest extends TestBase {
     public void backToCart(){
         checkoutInformation();
         checkoutInformationPage.clickBtnCancel();
-        String actualTitle = driver.findElement(By.xpath("//span[@class = 'title']")).getText();
+        String actualTitle = cartPage.getTitleCart();
         Assert.assertEquals(actualTitle, "YOUR CART");
     }
 
@@ -60,9 +61,9 @@ public class CheckoutInformationTest extends TestBase {
         checkoutInformationPage.inputLastName("ishaq");
         checkoutInformationPage.inputPostalCode("11111");
         checkoutInformationPage.clickBtnContinue();
-        String product1 = driver.findElement(By.xpath("//div[starts-with(text(),'Sauce Labs Backpack')]")).getText();
+        String product1 = inventoryPage.getTextProductName1();
         Assert.assertEquals(product1, "Sauce Labs Backpack");
-        String product2 = driver.findElement(By.xpath("//div[starts-with(text(),'Sauce Labs Bike Light')]")).getText();
+        String product2 = inventoryPage.getTextProductName2();
         Assert.assertEquals(product2, "Sauce Labs Bike Light");
 
     }
@@ -80,7 +81,7 @@ public class CheckoutInformationTest extends TestBase {
         cartPage.clickBtnCheckout();
         checkoutInformationPage.clickBtnContinue();
 
-        String actualTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        String actualTotalCart = cartPage.getTextTotalCart();
         Assert.assertEquals(actualTotalCart, "");
 
     }
@@ -111,6 +112,11 @@ public class CheckoutInformationTest extends TestBase {
         String actualPostalcode = checkoutInformationPage.getTextErrorPostalCode();
         Assert.assertEquals(actualPostalcode, "Error: Postal Code is required");
 
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
     }
 
 }

@@ -42,4 +42,9 @@ public class InventoryItemPage extends TestBase {
         btnRemove.click();
     }
 
+    public boolean btnBackToProductsDisplayed(){
+        boolean display = btnBackToProducts.isDisplayed();
+        return display;
+    }
+
 }

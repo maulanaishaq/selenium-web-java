@@ -24,6 +24,10 @@ public class CartPage extends TestBase {
     @FindBy(xpath = "//a[@class='shopping_cart_link']")
     WebElement btnCart;
 
+    @FindBy(xpath = "//span[@class = 'title']")
+    WebElement txtTitleCart;
+
+
     public CartPage(){
         PageFactory.initElements(driver, this);
     }
@@ -49,5 +53,24 @@ public class CartPage extends TestBase {
         btnCart.click();
     }
 
+    public boolean btnRemoveProduct1Displayed(){
+        boolean actual = btnRemoveProduct1.isDisplayed();
+        return actual;
+    }
+
+    public boolean btnRemoveProduct2Displayed(){
+        boolean actual = btnRemoveProduct2.isDisplayed();
+        return actual;
+    }
+
+    public String getTextTotalCart(){
+        String total = btnCart.getText();
+        return total;
+    }
+
+    public String getTitleCart(){
+        String title = txtTitleCart.getText();
+        return title;
+    }
 
 }

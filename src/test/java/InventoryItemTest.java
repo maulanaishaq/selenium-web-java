@@ -33,8 +33,8 @@ public class InventoryItemTest extends TestBase {
         loginPage.setTxtUsername("standard_user");
         loginPage.setTxtPassword("secret_sauce");
         loginPage.setBtnLogin();
-        inventoryPage.clickProductName();
-        boolean verify = driver.findElement(By.id("back-to-products")).isDisplayed();
+        inventoryPage.clickProductName1();
+        boolean verify = itemPage.btnBackToProductsDisplayed();
         Assert.assertTrue(verify);
 
     }
@@ -43,7 +43,7 @@ public class InventoryItemTest extends TestBase {
     public void addToCart() {
         openInventoryItemPage();
         itemPage.clickBtnAddToCart();
-        String verifyTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        String verifyTotalCart = inventoryPage.verifyTotalCart();
         String expectedTotalCart = "1";
         Assert.assertEquals(verifyTotalCart, expectedTotalCart);
 
@@ -53,7 +53,7 @@ public class InventoryItemTest extends TestBase {
     public void removeCart() {
         addToCart();
         itemPage.clickBtnRemove();
-        String verifyTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        String verifyTotalCart = inventoryPage.verifyTotalCart();
         System.out.println(verifyTotalCart);
         String expectedTotalCart = "";
         Assert.assertEquals(verifyTotalCart, expectedTotalCart);
@@ -65,10 +65,9 @@ public class InventoryItemTest extends TestBase {
         openInventoryItemPage();
         itemPage.clickBtnBackToProducts();
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = "https://www.saucedemo.com/inventory.html";
+        String expectedUrl = inventoryPage.getUrlInventoyPage();
         Assert.assertEquals(actualUrl, expectedUrl);
     }
-
 
 
     @AfterMethod

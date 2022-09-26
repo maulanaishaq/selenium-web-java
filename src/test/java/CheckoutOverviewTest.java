@@ -1,6 +1,7 @@
 import base.TestBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
@@ -43,10 +44,8 @@ public class CheckoutOverviewTest extends TestBase {
         checkoutInformationPage.inputPostalCode("2102912");
         checkoutInformationPage.clickBtnContinue();
         checkoutOverviewPage.clickBtnFinish();
-
-        String actualThanksMessage = driver.findElement(By.xpath("//h2[starts-with(text(), 'THANK YOU FOR YOUR ORDER')]")).getText();
+        String actualThanksMessage = checkoutOverviewPage.getTextThankyouOrder();
         Assert.assertEquals(actualThanksMessage, "THANK YOU FOR YOUR ORDER");
-
     }
 
 
@@ -65,20 +64,22 @@ public class CheckoutOverviewTest extends TestBase {
         checkoutInformationPage.clickBtnContinue();
         checkoutOverviewPage.clickBtnCancel();
         String actualUrl = driver.getCurrentUrl();
-        String expected = "https://www.saucedemo.com/inventory.html";
+        String expected = inventoryPage.getUrlInventoyPage();
         Assert.assertEquals(actualUrl, expected);
     }
-
-
 
     @Test
     public void backToHome(){
         checkoutFinish();
         checkoutOverviewPage.clickBtnHome();
         String actualUrl = driver.getCurrentUrl();
-        String expected = "https://www.saucedemo.com/inventory.html";
+        String expected = inventoryPage.getUrlInventoyPage();
         Assert.assertEquals(actualUrl, expected);
     }
 
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
 
 }

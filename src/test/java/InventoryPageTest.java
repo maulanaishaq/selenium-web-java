@@ -33,7 +33,7 @@ public class InventoryPageTest extends TestBase {
         loginPage.setTxtUsername("standard_user");
         loginPage.setTxtPassword("secret_sauce");
         loginPage.setBtnLogin();
-        boolean verifyElement = driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).isDisplayed();
+        boolean verifyElement = inventoryPage.btnAddToCartProduct1Displayed();
         Assert.assertTrue(verifyElement);
     }
 

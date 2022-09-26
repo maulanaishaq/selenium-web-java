@@ -7,31 +7,42 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CheckoutOverviewPage extends TestBase {
 
-   @FindBy(id = "finish")
+    @FindBy(id = "finish")
     WebElement btnFinish;
 
-   @FindBy(id = "cancel")
+    @FindBy(id = "cancel")
     WebElement btnCancel;
 
-   @FindBy(id = "back-to-products")
-   WebElement btnBackHome;
-
-   public CheckoutOverviewPage(){
-       PageFactory.initElements(driver, this);
-   }
+    @FindBy(id = "back-to-products")
+    WebElement btnBackHome;
 
 
-   public void clickBtnFinish(){
-       btnFinish.click();
-   }
+    @FindBy(xpath = "//h2[starts-with(text(), 'THANK YOU FOR YOUR ORDER')]")
+    WebElement txtThankyouOrder;
 
-   public void clickBtnCancel(){
-       btnCancel.click();
-   }
 
-   public void clickBtnHome(){
-       btnBackHome.click();
-   }
+    public CheckoutOverviewPage() {
+        PageFactory.initElements(driver, this);
+    }
 
+
+    public void clickBtnFinish() {
+        btnFinish.click();
+    }
+
+    public void clickBtnCancel() {
+        btnCancel.click();
+    }
+
+    public void clickBtnHome() {
+        btnBackHome.click();
+    }
+
+
+    public String getTextThankyouOrder() {
+        String message = txtThankyouOrder.getText();
+        return message;
+
+    }
 
 }

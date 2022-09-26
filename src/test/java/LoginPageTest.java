@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.InventoryPage;
 import pages.LoginPage;
 import utils.TestUtil;
 
@@ -12,6 +13,7 @@ import utils.TestUtil;
 public class LoginPageTest extends TestBase {
 
     LoginPage loginPage;
+    InventoryPage inventoryPage;
 
 
    public LoginPageTest(){
@@ -22,6 +24,7 @@ public class LoginPageTest extends TestBase {
    public void setUp(){
        initialization();
        loginPage = new LoginPage();
+       inventoryPage = new InventoryPage();
    }
 
    @Test
@@ -29,7 +32,7 @@ public class LoginPageTest extends TestBase {
        loginPage.setTxtUsername("standard_user");
        loginPage.setTxtPassword("secret_sauce");
        loginPage.setBtnLogin();
-       boolean verifyElement = driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).isDisplayed();
+       boolean verifyElement = inventoryPage.btnAddToCartProduct1Displayed();
        Assert.assertTrue(verifyElement);
    }
 
@@ -38,7 +41,7 @@ public class LoginPageTest extends TestBase {
        loginPage.setTxtUsername("performance_glitch_user");
        loginPage.setTxtPassword("secret_sauce");
        loginPage.setBtnLogin();
-       boolean verifyElement = driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).isDisplayed();
+       boolean verifyElement = inventoryPage.btnAddToCartProduct1Displayed();
        Assert.assertTrue(verifyElement);
    }
 

@@ -1,7 +1,8 @@
 import base.TestBase;
 
-import org.openqa.selenium.By;
+
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -35,7 +36,7 @@ public class CartPageTest extends TestBase {
         inventoryPage.clickBtnAddToCartProduct1();
         inventoryPage.clickBtnAddToCartProduct2();
         inventoryPage.clickBtnCart();
-        boolean verify = driver.findElement(By.id("remove-sauce-labs-backpack")).isDisplayed();
+        boolean verify = cartPage.btnRemoveProduct1Displayed();
         Assert.assertTrue(verify);
     }
 
@@ -44,7 +45,7 @@ public class CartPageTest extends TestBase {
         addProductToCart();
         cartPage.clickBtnRemoveProduct1();
         cartPage.clickBtnRemoveProduct2();
-        String verifyTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        String verifyTotalCart = cartPage.getTextTotalCart();
         Assert.assertEquals(verifyTotalCart,"");
     }
 
@@ -53,16 +54,20 @@ public class CartPageTest extends TestBase {
     public void backToInventoryPage(){
         addProductToCart();
         cartPage.clickBtnShoping();
-        String verifyTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
+        String verifyTotalCart = cartPage.getTextTotalCart();
         Assert.assertEquals(verifyTotalCart,"2");
-        boolean verifyBtnRemove1 = driver.findElement(By.id("remove-sauce-labs-backpack")).isDisplayed();
+        boolean verifyBtnRemove1 = cartPage.btnRemoveProduct1Displayed();
         Assert.assertTrue(verifyBtnRemove1);
-        boolean verifyBtnRemove2 = driver.findElement(By.id("remove-sauce-labs-bike-light")).isDisplayed();
+        boolean verifyBtnRemove2 = cartPage.btnRemoveProduct2Displayed();
         Assert.assertTrue(verifyBtnRemove2);
 
     }
 
 
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
 
 
 

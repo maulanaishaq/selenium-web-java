@@ -32,6 +32,8 @@ public class CheckoutInformationPage extends TestBase {
     @FindBy(xpath = "//h3[starts-with(text(), 'Error: Postal Code is required')]")
     WebElement errorTxtPostalCode;
 
+    @FindBy(xpath = "//span[@class = 'title']")
+    WebElement textTitle;
 
 
     public CheckoutInformationPage(){
@@ -74,6 +76,12 @@ public class CheckoutInformationPage extends TestBase {
         String postalcode = errorTxtPostalCode.getText();
         return postalcode;
     }
+
+    public String getTitleCheckoutYourInformation(){
+        String title = textTitle.getText();
+        return title;
+    }
+
 
 
 }
