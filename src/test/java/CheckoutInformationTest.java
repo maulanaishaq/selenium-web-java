@@ -1,5 +1,6 @@
 import base.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -81,6 +82,34 @@ public class CheckoutInformationTest extends TestBase {
 
         String actualTotalCart = driver.findElement(By.xpath("//a[@class = 'shopping_cart_link']")).getText();
         Assert.assertEquals(actualTotalCart, "");
+
+    }
+
+    @Test
+    public void getErrorFirstname(){
+        checkoutInformation();
+        checkoutInformationPage.clickBtnContinue();
+        String actualFirstname = checkoutInformationPage.getTextErrorFirstname();
+        Assert.assertEquals(actualFirstname, "Error: First Name is required");
+    }
+
+    @Test
+    public void getErrorLastname(){
+        checkoutInformation();
+        checkoutInformationPage.inputFirstName("maulana");
+        checkoutInformationPage.clickBtnContinue();
+        String actualLastname = checkoutInformationPage.getTextErrorLastname();
+        Assert.assertEquals(actualLastname, "Error: Last Name is required");
+    }
+
+    @Test
+    public void getErrorPostalCode(){
+        checkoutInformation();
+        checkoutInformationPage.inputFirstName("maulana");
+        checkoutInformationPage.inputLastName("ishaq");
+        checkoutInformationPage.clickBtnContinue();
+        String actualPostalcode = checkoutInformationPage.getTextErrorPostalCode();
+        Assert.assertEquals(actualPostalcode, "Error: Postal Code is required");
 
     }
 
