@@ -1,5 +1,5 @@
 import base.TestBase;
-import org.apache.commons.logging.Log;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.InventoryPage;
 import pages.LoginPage;
-import utils.TestUtil;
+
 
 public class CartPageTest extends TestBase {
     LoginPage loginPage;
