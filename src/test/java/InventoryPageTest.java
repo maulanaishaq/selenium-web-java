@@ -69,6 +69,7 @@ public class InventoryPageTest extends TestBase {
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = "https://twitter.com/saucelabs";
         Assert.assertEquals(actualUrl, expectedUrl);
+        driver.close();
 
     }
 
@@ -82,6 +83,7 @@ public class InventoryPageTest extends TestBase {
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = "https://www.facebook.com/saucelabs";
         Assert.assertEquals(actualUrl, expectedUrl);
+        driver.close();
     }
 
     @Test
@@ -94,6 +96,7 @@ public class InventoryPageTest extends TestBase {
         String actualUrl = driver.findElement(By.xpath("//h1[starts-with(text(), \"Join LinkedIn\")]")).getText();
         String expectedUrl = "Join LinkedIn";
         Assert.assertEquals(actualUrl, expectedUrl);
+        driver.close();
     }
 
 
@@ -108,6 +111,7 @@ public class InventoryPageTest extends TestBase {
         String actualUrl = driver.getCurrentUrl();
         String expectedUrl = "https://saucelabs.com/";
         Assert.assertEquals(actualUrl, expectedUrl);
+        driver.close();
     }
 
     @Test

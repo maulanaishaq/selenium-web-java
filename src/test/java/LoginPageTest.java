@@ -68,6 +68,19 @@ public class LoginPageTest extends TestBase {
 
    }
 
+
+    @Test
+    public void loginInvalidUsername() {
+        loginPage.setTxtUsername("arum");
+        loginPage.setTxtPassword("secret_sauce");
+        loginPage.setBtnLogin();
+        String actualMessage = driver.findElement(By.xpath("//h3[@data-test =\"error\"]")).getText();
+        String expectedMessage = "Epic sadface: Username and password do not match any user in this service";
+        Assert.assertEquals(actualMessage, expectedMessage);
+        TestUtil.takeScreenshot();
+
+    }
+
     @AfterMethod
     public void tearDown(){
         driver.quit();
