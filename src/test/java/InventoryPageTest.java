@@ -93,8 +93,8 @@ public class InventoryPageTest extends TestBase {
         inventoryPage.clickBtnLinkedin();
         Thread.sleep(3000);
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-        String actualUrl = driver.findElement(By.xpath("//h1[starts-with(text(), \"Join LinkedIn\")]")).getText();
-        String expectedUrl = "Join LinkedIn";
+        String actualUrl = driver.findElement(By.xpath("//h2[@class = \"contextual-sign-in-modal__context-screen-title font-sans text-xl text-color-text my-2 mx-4 text-center\"]")).getText();
+        String expectedUrl = "Sign in to see who you already know at Sauce Labs";
         Assert.assertEquals(actualUrl, expectedUrl);
         driver.close();
     }
